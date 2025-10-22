@@ -35,6 +35,21 @@ class CategoryModel {
         return $newCategory;
     }
 
+     public function update(int $id, array $data): ?object {
+        $categories = $this->getAll();
+
+        foreach ($categories as $category) {
+            if ($category->id === $id) {
+                foreach ($data as $key => $value) {
+                    $category->$key = $value;
+                }
+                $this->save($categories);
+                return $category;
+            }
+        }
+        return null;
+    }
+
     private function save(array $categories): void {
         // Convertimos objetos a arrays antes de guardar
         $array = array_map(fn($c) => (array) $c, $categories);
