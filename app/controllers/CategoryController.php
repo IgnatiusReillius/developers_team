@@ -42,4 +42,17 @@ class CategoryController extends ApplicationController {
         exit;
     }
 
+    public function deleteAction()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = (int)($_POST['id'] ?? 0);
+            if ($id > 0) {
+                $this->model->delete($id);
+            }
+        }
+
+        header('Location: ' . WEB_ROOT . '/categories');
+        exit;
+    }
+
 }

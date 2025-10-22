@@ -35,7 +35,7 @@ class CategoryModel {
         return $newCategory;
     }
 
-     public function update(int $id, array $data): ?object {
+    public function update(int $id, array $data): ?object {
         $categories = $this->getAll();
 
         foreach ($categories as $category) {
@@ -48,6 +48,16 @@ class CategoryModel {
             }
         }
         return null;
+    }
+
+    public function delete(int $id): bool {
+        $categories = $this->getAll();
+        $newCategories = array_filter($categories, fn($category) => $category->id !== $id);
+
+        if (count($newCategories) === count($categories)) return false;
+
+        $this->save(array_values($newCategories));
+        return true;
     }
 
     private function save(array $categories): void {

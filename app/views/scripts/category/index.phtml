@@ -43,10 +43,14 @@ $this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
             <img src="../../images/icon-edit.svg" alt="Editar" class="w-5 h-5 inline">
           </button>
 
-          
+        <!-- Botón Eliminar -->
+          <form action="<?= WEB_ROOT ?>/categories/delete" method="POST" onsubmit="return confirm('¿Eliminar esta categoría?')">
+            <input type="hidden" name="id" value="<?= $cat->id ?>">
+            <button type="submit" class="text-red-500 hover:text-red-700" title="Eliminar">
+              <img src="<?= WEB_ROOT ?>../../images/icon-delete.svg" alt="Eliminar" class="w-5 h-5 inline">
+            </button>
           </form>
         </div>
-
       </li>
     <?php endforeach; ?>
   </ul>
