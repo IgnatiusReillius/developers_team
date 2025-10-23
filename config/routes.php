@@ -10,5 +10,6 @@
  * '/calendar' => 'calendar#index'
  */
 $routes = array(
-	'/test' => 'test#index'
+	'/' => 'test#index', // Si está vacío, cargará "index.php" de la carpeta "(app/views/scripts/)test"
+	'/error' => 'error#error'
 );

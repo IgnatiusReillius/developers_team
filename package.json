@@ -1,0 +1,28 @@
+{
+  "name": "developers_team",
+  "version": "1.0.0",
+  "description": "Main structure of php project. Folders / files:\r - **app**\r   - **controllers**\r   - **models**\r   - **views**\r - **config**\r - **lib**\r   - **base**\r - **web**",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgnatiusReillius/developers_team.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgnatiusReillius/developers_team/issues"
+  },
+  "homepage": "https://github.com/IgnatiusReillius/developers_team#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.15"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.15"
+  }
+}
