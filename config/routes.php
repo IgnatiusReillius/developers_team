@@ -10,5 +10,11 @@
  * '/calendar' => 'calendar#index'
  */
 $routes = array(
-	'/test' => 'test#index'
+	'/test' => 'test#index',
+	 // Ruta para la lista de categorías
+    '/categories' => 'Category#index',
+	'/categories/create'  => 'Category#create',
+    '/categories/update'  => 'Category#update',
+    '/categories/delete'  => 'Category#delete',
+
 );
