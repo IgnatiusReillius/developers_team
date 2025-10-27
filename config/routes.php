@@ -17,4 +17,14 @@ $routes = array(
     '/categories/update'  => 'Category#update',
     '/categories/delete'  => 'Category#delete',
 
+
+	//---Users routes---
+	'/login' => 'user#login',       //parte dcha se refiere a la accion en el controlador.
+	'/signup' => 'user#signup',
+	'/registeredUser' => 'user#registeredUser',
+	'/delete' => 'user#delete',
+	'/update' => 'user#update',
+	'/home' => 'user#home',
+	'/logout' => 'user#logout',
+	'/deleteConfirm' => 'user#deleteConfirm'
 );
