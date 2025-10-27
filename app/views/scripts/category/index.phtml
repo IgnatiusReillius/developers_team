@@ -1,0 +1,48 @@
+
+<?php
+
+
+// Definir botones para subheader
+$this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
+?>
+
+
+<div class="w-full max-w-md bg-white p-6 rounded-xl shadow space-y-6">
+
+  
+  <h1 class="text-2xl font-bold text-gray-800">Categorías</h1>
+
+  <!-- ================================
+  Lista de categorías
+  Cada categoría tiene: 
+    - nombre
+    - botón editar (muestra input y tick)
+    - botón eliminar
+  ================================ -->
+  <ul class="space-y-3">
+    <?php foreach ($this->categories as $cat): ?>
+      <li class="flex items-center justify-between bg-gray-100 rounded px-3 py-2 relative">
+
+        <!-- ================================
+        Contenedor izquierdo
+        Contiene:
+          - nombre de categoría
+          - input oculto para editar
+        ================================ -->
+        <div class="flex items-center gap-2 w-full">
+
+          <!-- Nombre visible de la categoría -->
+          <span class="category-name flex-grow"><?= htmlspecialchars($cat->name) ?></span>
+
+          
+        </div>
+
+      </li>
+    <?php endforeach; ?>
+  </ul>
+
+</div>
+
+
+
+
