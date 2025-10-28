@@ -11,5 +11,11 @@
  */
 $routes = array(
 	'/' => 'test#index', // Si está vacío, cargará "index.php" de la carpeta "(app/views/scripts/)test"
-	'/error' => 'error#error'
+	'/error' => 'error#error',
+
+	// rutas para las tareas
+	'/task/viewTask' => 'task#viewTask',
+    '/task/create'   => 'task#createTask',
+    '/task/edit'     => 'task#edit',
+    '/task/delete'   => 'task#delete',
 );
