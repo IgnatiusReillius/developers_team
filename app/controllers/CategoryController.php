@@ -1,6 +1,6 @@
 <?php
-require_once ROOT_PATH . '/app/models/CategoryModel.php';
-require_once ROOT_PATH . '/app/controllers/ApplicationController.php';
+require_once __DIR__ .  '/../models/CategoryModel.php';
+require_once __DIR__ . '/../../config/constants.php';
 
 class CategoryController extends ApplicationController {
     private CategoryModel $model;
