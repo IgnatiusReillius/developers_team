@@ -55,4 +55,16 @@ class UserModel extends Model
         }
         return null;
     }
+    function updateUsers(string $email, string $newName, string $newPassword) : bool
+    {
+        foreach ($this->data['users'] as &$user) {
+            if ($user['email'] === $email) {
+                $user['name'] = $newName;
+                $user['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+                return $this->saveUsers();
+            }
+        }
+        return false;
+    }
+
 
