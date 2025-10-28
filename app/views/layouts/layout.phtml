@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +8,21 @@
 	<title><?= $this->title ?? 'Taskify'; ?></title>
 	<script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
 	<!-- HEADER común -->
 	<?php require ROOT_PATH . '/app/views/layouts/header.phtml'; ?>
-	
+
 	<!-- SUBHEADER solo si la vista definió botones -->
-     <?php
-      // Extraemos $this->_buttons si existe
-     $botones = $this->_buttons ?? '';
-     // Incluimos subheader solo si hay contenido
-     if (!empty($botones)) {
-       include __DIR__ . '/subheader.phtml';
-     }
-    ?>
+	<?php
+	// Extraemos $this->_buttons si existe
+	$botones = $this->_buttons ?? '';
+	// Incluimos subheader solo si hay contenido
+	if (!empty($botones)) {
+		include __DIR__ . '/subheader.phtml';
+	}
+	?>
 
 	<!-- CONTENIDO de cada vista -->
 	<main class="flex-grow flex items-center justify-center p-6">
@@ -31,9 +32,6 @@
 	<!-- FOOTER común -->
 	<?php require ROOT_PATH . '/app/views/layouts/footer.phtml'; ?>
 
-   </body>
-   </html>
+</body>
 
-
-
-
+</html>
