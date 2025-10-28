@@ -65,6 +65,12 @@
             "name": "rebe",
             "email": "rebe@gmail.com",
             "password": "$2y$10$pldeYRIGbeRxsRPF5FQ.1uplFCVGeyFMc2Yxa8oC\/TQzu9KbOo19y"
+        },
+        {
+            "id": "690091b0158a8",
+            "name": "mikel",
+            "email": "mikel@gmail.com",
+            "password": "$2y$10$ggUCL8unN\/erKHf22qH0IOG8zXtHT6jmD.Y3Xzb4VXS\/CXPDiRC\/S"
         }
     ]
 }

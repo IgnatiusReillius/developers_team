@@ -26,5 +26,9 @@ $routes = array(
 	'/update' => 'user#update',
 	'/home' => 'user#home',
 	'/logout' => 'user#logout',
-	'/deleteConfirm' => 'user#deleteConfirm'
+	'/deleteConfirm' => 'user#deleteConfirm',
+
+	  // raíz → login
+    '/' => 'user#login',
+    ''  => 'user#login'
 );
