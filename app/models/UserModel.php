@@ -66,5 +66,17 @@ class UserModel extends Model
         }
         return false;
     }
+    function deleteUsers($id)
+    {
+        foreach ($this->data['users'] as $index => $user) {
+            if ($user ['id'] === $id) {
+                unset ($this->data['users'][$index]);
+                $this->data['users'] = array_values($this->data['users']);
+                return $this->saveUsers();
+            }
+            
+        }
+        return false;
+    }
 
-
+}

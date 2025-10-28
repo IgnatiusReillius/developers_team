@@ -156,4 +156,15 @@ class UserController extends ApplicationController
             $this->view->user = $_SESSION['user'];
         }
     }
+        public function deleteAction()
+    {
+        if (isset($_SESSION['user']['id'])) {
+            $this->userModel->deleteUsers($_SESSION['user']['id']);
+        }
+        session_destroy();
+        header('Location: ' . BASE_URL . '/login');
+        exit;
+    }
+    public function registeredUserAction() {}
+    public function deleteConfirmAction() {}
 }
