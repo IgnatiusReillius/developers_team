@@ -1,0 +1,34 @@
+<!-- Header -->
+<header class="w-full bg-gray-200 flex items-center justify-between px-6 py-4 shadow">
+  
+  <!-- Logo a la izquierda -->
+  <div class="flex items-center gap-2">
+    <img src="<?= WEB_ROOT ?>/images/logo-taskify.svg" alt="Taskify" class="h-8">   
+  </div>
+
+  <!-- Botón de usuario a la derecha -->
+  <!-- Contenedor alineado a la derecha -->
+<div class="flex justify-end items-center p-4">
+  <div class="relative">
+    <!-- Checkbox oculto para controlar el menú -->
+    <input type="checkbox" id="user-menu" class="peer hidden">
+
+    <!-- Botón que muestra el nombre e ícono del usuario -->
+    <label for="user-menu" 
+           class="flex items-center space-x-2 cursor-pointer text-black px-4 py-2 rounded hover:bg-gray-100 hover:text-gray-800 transition">
+      <img src="<?= WEB_ROOT ?>/images/icon-user.svg" alt="Usuario" class="h-8 w-8">
+      
+      <span>▼</span>
+    </label>
+
+    <!-- Menú desplegable -->
+    <div class="hidden peer-checked:block absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
+      <a href="<?= BASE_URL ?>/update" class="block px-4 py-3 hover:bg-gray-100">Editar perfil</a>
+      <a href="<?= BASE_URL ?>/logout" class="block px-4 py-3 hover:bg-gray-100 text-red-600">Cerrar sesión</a>
+    </div>
+  </div>
+</div>
+
+
+
+</header>

@@ -1,0 +1,38 @@
+<?php $this->title = "Perfil usuarios"; ?>
+
+<!-- Header con menú de usuario -->
+<div class="flex justify-end items-center p-4">
+    <div class="relative">
+        <input type="checkbox" id="menu" class="peer hidden">
+
+        <label for="menu" class="px-4 py-2 cursor-pointer bg-gray-100 rounded">
+            <?= $_SESSION['user']['name'] ?> ▼
+        </label>
+
+        <div class="hidden peer-checked:block absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+            <a href="<?= BASE_URL ?>/update" class="block px-4 py-3 hover:bg-gray-100">Editar perfil</a>
+            <a href="<?= BASE_URL ?>/logout" class="block px-4 py-3 hover:bg-gray-100 text-red-600">Cerrar sesión</a>
+        </div>
+    </div>
+</div>
+
+<!-- Botones centrados -->
+<div class="flex justify-center gap-6 mt-8">
+    <a href="/nueva-categoria" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">
+        + Nueva categoría
+    </a>
+    <a href="/categorias" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">
+        Ir a categorías
+    </a>
+</div>
+
+<!-- Mensaje de bienvenida centrado -->
+<div class="text-center mt-16">
+    <h2 class="text-2xl font-bold text-gray-400">Bienvenido</h2>
+</div>
+
+<?php if (!empty($this->error)): ?>
+    <div class="max-w-md mx-auto mt-4 p-4 bg-red-100 text-red-700 rounded">
+        <?= htmlspecialchars($this->error) ?>
+    </div>
+<?php endif; ?>
