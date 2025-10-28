@@ -11,7 +11,7 @@ class CategoryController extends ApplicationController {
 
     
     public function indexAction() {
-       $this->view->categories = $this->model->getAll();
+    $this->view->categories = $this->model->getAll();
     }
 
     public function createAction() {
