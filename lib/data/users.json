@@ -83,6 +83,12 @@
             "name": "nacho",
             "email": "nacho@gmail.com",
             "password": "$2y$10$dZgzNVr50T8dtrWGstnNHeFa7xSsu\/BeC.M7NOPF4U7cXQQBhKaSO"
+        },
+        {
+            "id": "6900bda5e07f5",
+            "name": "nacho",
+            "email": "nacho@nacho.com",
+            "password": "$2y$10$9AyhDjDXB6DBYRq8Oa.xPuMshuY4NPxJmT1n3T7anXzt.nkGcI3Gy"
         }
     ]
 }
