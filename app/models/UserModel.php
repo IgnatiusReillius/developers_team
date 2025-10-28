@@ -42,3 +42,17 @@ class UserModel extends Model
         $json = json_encode($this->data, JSON_PRETTY_PRINT);
         return file_put_contents(DATA_JSON, $json) !== false;
     }
+    function getAllUsers(): array
+    {
+        return $this->data['users'] ?? [];   //devolvemos todos los usuarios y si no hay un array vacio.
+    }
+    function getUsersById(string $id) : ?array
+    {
+        foreach ($this->data['users'] as $user) {
+            if ($user['id'] === $id) {
+                return $user;
+            }
+        }
+        return null;
+    }
+
