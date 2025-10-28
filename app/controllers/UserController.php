@@ -113,4 +113,47 @@ class UserController extends ApplicationController
         }
         return null;
     }
+        public function updateAction()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: ' . BASE_URL . '/login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name    = trim($_POST['name'] ?? '');
+            $newPassword = trim($_POST['newPassword'] ?? '');
+            $confirmPassword = trim($_POST['confirmPassword'] ?? '');
+
+            if (strlen($name) < 3) {
+                $this->view->error = "Nombre inválido.";
+                return;
+            }
+            if (strlen($newPassword) < 6) {
+                $this->view->error = "Contraseña muy corta.";
+                return;
+            }
+            if ($newPassword !== $confirmPassword) {
+                $this->view->error = "Las contraseñas no coinciden";
+                return;
+            }
+            $email = $_SESSION['user']['email'];
+            $updated = $this->userModel->updateUsers($email, $name, $newPassword);
+
+            if ($updated) {
+                $_SESSION['user'] = [
+                    'id' => $_SESSION['user']['id'],
+                    'email' => $email,
+                    'name' => $name
+                ];
+                header('Location: ' . BASE_URL . '/home');
+                exit;
+            }
+
+            $this->view->error = "No se pudo actualizar.";
+            $this->view->user  = $_SESSION['user'];
+        } else {
+            $this->view->user = $_SESSION['user'];
+        }
+    }
 }
