@@ -30,5 +30,11 @@ $routes = array(
 
 	  // raíz → login
     '/' => 'user#login',
-    ''  => 'user#login'
+    ''  => 'user#login',
+
+	// rutas para las tareas
+	'/task/viewTask' => 'task#viewTask',
+    '/task/create'   => 'task#createTask',
+    '/task/edit'     => 'task#edit',
+    '/task/delete'   => 'task#delete',
 );
