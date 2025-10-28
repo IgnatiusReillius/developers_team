@@ -71,6 +71,12 @@
             "name": "mikel",
             "email": "mikel@gmail.com",
             "password": "$2y$10$ggUCL8unN\/erKHf22qH0IOG8zXtHT6jmD.Y3Xzb4VXS\/CXPDiRC\/S"
+        },
+        {
+            "id": "690095804a57b",
+            "name": "maik",
+            "email": "maik@gmail.com",
+            "password": "$2y$10$UcwuCVSeREg6FtyQHa7LU.2SvWC2rymF3NcJYD\/vwc.24Fuux9AMi"
         }
     ]
 }
