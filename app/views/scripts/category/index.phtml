@@ -5,7 +5,7 @@ $this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
 
 <div class="w-full max-w-md bg-white p-6 rounded-xl shadow space-y-6">
 
-  
+
   <h1 class="text-2xl font-bold text-gray-800">Categorías</h1>
 
 
@@ -14,7 +14,7 @@ $this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
       <li class="flex items-center justify-between bg-gray-100 rounded px-3 py-2 relative">
 
         <!-- ========Contenedor izquierdo========== -->
-      
+
         <div class="flex items-center gap-2 w-full">
 
           <!-- Nombre visible de la categoría -->
@@ -26,28 +26,28 @@ $this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
 
             <!-- Input para modificar el nombre -->
             <input type="text" name="name" value="<?= htmlspecialchars($cat->name) ?>"
-                   class="flex-grow border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              class="flex-grow border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
 
             <!-- Botón tick para confirmar cambios -->
             <button type="submit" class="text-green-600 hover:text-green-800" title="Guardar cambios">
-              <img src="<?= WEB_ROOT ?>../../images/icon-tick.svg" alt="Guardar" class="w-5 h-5 inline">
+              <img src="<?= WEB_ROOT ?>/images/icon-tick.svg" alt="Guardar" class="w-5 h-5 inline">
             </button>
           </form>
         </div>
 
         <!-- =======Contenedor derecho ====== -->
-        
+
         <div class="flex items-center gap-2 ml-2">
           <!-- Botón Editar -->
           <button class="edit-btn" title="Editar">
-            <img src="../../images/icon-edit.svg" alt="Editar" class="w-5 h-5 inline">
+          <img src="<?= WEB_ROOT ?>/images/icon-edit.svg" alt="Editar" class="w-5 h-5 inline">
           </button>
 
-        <!-- Botón Eliminar -->
+          <!-- Botón Eliminar -->
           <form action="<?= WEB_ROOT ?>/categories/delete" method="POST" onsubmit="return confirm('¿Eliminar esta categoría?')">
             <input type="hidden" name="id" value="<?= $cat->id ?>">
             <button type="submit" class="text-red-500 hover:text-red-700" title="Eliminar">
-              <img src="<?= WEB_ROOT ?>../../images/icon-delete.svg" alt="Eliminar" class="w-5 h-5 inline">
+              <img src="<?= WEB_ROOT ?>/images/icon-delete.svg" alt="Eliminar" class="w-5 h-5 inline">
             </button>
           </form>
         </div>
@@ -58,9 +58,9 @@ $this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
   <!-- ======Formulario para crear nueva categoría========== -->
   <form action="<?= WEB_ROOT ?>/categories/create" method="POST" class="flex gap-2">
     <input type="text" name="name" placeholder="Nueva categoría" required
-           class="flex-grow border px-3 py-2 rounded bg-gray-50" />
+      class="flex-grow border px-3 py-2 rounded bg-gray-50" />
     <button type="submit"
-            class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Agregar</button>
+      class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Agregar</button>
   </form>
 </div>
 
@@ -68,5 +68,4 @@ $this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
 
 <!-- =======JavaScript=== -->
 
-<script src="/javascripts/category.js"></script>
-
+<script src="<?= WEB_ROOT ?>/javascripts/category.js"></script>
