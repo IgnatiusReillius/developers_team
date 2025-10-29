@@ -122,6 +122,7 @@ class UserController extends ApplicationController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name    = trim($_POST['name'] ?? '');
+            $email    = trim($_POST['email'] ?? '');
             $newPassword = trim($_POST['newPassword'] ?? '');
             $confirmPassword = trim($_POST['confirmPassword'] ?? '');
 
@@ -129,6 +130,8 @@ class UserController extends ApplicationController
                 $this->view->error = "Nombre inválido.";
                 return;
             }
+            $wantsToChangePassword = !empty($newPassword) || !empty($confirmPassword);
+            if ($wantsToChangePassword) {
             if (strlen($newPassword) < 6) {
                 $this->view->error = "Contraseña muy corta.";
                 return;
@@ -137,6 +140,7 @@ class UserController extends ApplicationController
                 $this->view->error = "Las contraseñas no coinciden";
                 return;
             }
+        }
             $email = $_SESSION['user']['email'];
             $updated = $this->userModel->updateUsers($email, $name, $newPassword);
 

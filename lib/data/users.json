@@ -7,88 +7,10 @@
             "password": "$2y$10$S13A4PP3ekxPLi6nazx6vuSSyHRzNKXlvd2z14y9k3Y9FKin5o68e"
         },
         {
-            "id": "68fa56fd4eb51",
-            "name": "itacademy",
-            "email": "itacademy@gmail.com",
-            "password": "$2y$10$6FVV22ZAepC1VJbk9sv31.2XclEKWRXrh5kaInYI2TIAsrrlk.L9q"
-        },
-        {
-            "id": "68fa583db58ff",
-            "name": "meregsitro",
-            "email": "meregistro@gmail.com",
-            "password": "$2y$10$9O1aZgPqXOuKr6Qi18fb\/.hFuOtAjF2Cvjy9CvAm8WO0ACXfTFV.m"
-        },
-        {
-            "id": "68fa586a571f4",
-            "name": "seregistra",
-            "email": "seregistra@gmail.com",
-            "password": "$2y$10$c.ca6Kf8LqCDUySS9gdhmebh9e690kYgXo3MSmqsF8vrNytePZwuW"
-        },
-        {
-            "id": "68fa614362baf",
-            "name": "Mikel",
-            "email": "mikelin@mail.com",
-            "password": "$2y$10$2dn6q0eGHTGJRh7PBZRqCucBBgdbi6CoicPExFDrDkGJl1z.KnEfi"
-        },
-        {
-            "id": "68fb98434bbcb",
-            "name": "varillo",
-            "email": "varo@gmail.com",
-            "password": "$2y$10$FPeRGcsuMkZem10mUHAEEeXrhk5LkTuT5Bw821cBB6XKAYtiEutGG"
-        },
-        {
-            "id": "68fbc08538b5f",
-            "name": "Rebekita",
-            "email": "rebekita@gmail.com",
-            "password": "$2y$10$ibzOvQ8dbF9uDBCXA8\/iBeX9yFuD\/n02psvVOyiO6NEymeYi1LIeq"
-        },
-        {
-            "id": "68ff41af69809",
-            "name": "mikelin",
-            "email": "mikelin@email.com",
-            "password": "$2y$10$Ve2sHCYTohUFJ4uQ5ln7Ne6iX3ev0u85yv3rETbDzx02FjbQIM4NG"
-        },
-        {
-            "id": "68ff60104144b",
-            "name": "mikel",
-            "email": "mikel.falcesino@gmail.com",
-            "password": "$2y$10$ADVZNSGOtdRF4dW45r5j7.BwY5jDx4HA2vh95KGfS0MeP1SFZazMO"
-        },
-        {
-            "id": "68ff6ae4235c5",
-            "name": "mikel",
-            "email": "mikel@gmail.es",
-            "password": "$2y$10$9wi3czdpe\/XTCKL6QvcPAu2Q4XKLxWu9at1OpaqWk4FvZ0pPoWJyG"
-        },
-        {
-            "id": "68ffacc1a9d36",
-            "name": "rebe",
-            "email": "rebe@gmail.com",
-            "password": "$2y$10$pldeYRIGbeRxsRPF5FQ.1uplFCVGeyFMc2Yxa8oC\/TQzu9KbOo19y"
-        },
-        {
-            "id": "690091b0158a8",
-            "name": "mikel",
-            "email": "mikel@gmail.com",
-            "password": "$2y$10$ggUCL8unN\/erKHf22qH0IOG8zXtHT6jmD.Y3Xzb4VXS\/CXPDiRC\/S"
-        },
-        {
-            "id": "690095804a57b",
-            "name": "maik",
-            "email": "maik@gmail.com",
-            "password": "$2y$10$UcwuCVSeREg6FtyQHa7LU.2SvWC2rymF3NcJYD\/vwc.24Fuux9AMi"
-        },
-        {
-            "id": "6900afc1c0c29",
-            "name": "nacho",
-            "email": "nacho@gmail.com",
-            "password": "$2y$10$dZgzNVr50T8dtrWGstnNHeFa7xSsu\/BeC.M7NOPF4U7cXQQBhKaSO"
-        },
-        {
-            "id": "6900bda5e07f5",
-            "name": "nacho",
-            "email": "nacho@nacho.com",
-            "password": "$2y$10$9AyhDjDXB6DBYRq8Oa.xPuMshuY4NPxJmT1n3T7anXzt.nkGcI3Gy"
+            "id": "6901dab2a758b",
+            "name": "prueba",
+            "email": "prueba@gmail.com",
+            "password": "$2y$10$iGfDJIR0xTUlz6sg.a4w1Of9wBsBgKCsCHI4m01Yj.IbGxm2MEDWG"
         }
     ]
 }

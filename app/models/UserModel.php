@@ -60,7 +60,10 @@ class UserModel extends Model
         foreach ($this->data['users'] as &$user) {
             if ($user['email'] === $email) {
                 $user['name'] = $newName;
-                $user['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+
+                if ($newPassword !== null) {
+                    $user['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+                }
                 return $this->saveUsers();
             }
         }
