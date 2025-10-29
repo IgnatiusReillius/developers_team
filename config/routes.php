@@ -35,6 +35,6 @@ $routes = array(
 	// rutas para las tareas
 	'/task/viewTask' => 'task#viewTask',
     '/task/create'   => 'task#createTask',
-    '/task/edit'     => 'task#edit',
+    '/task/update'   => 'task#update',
     '/task/delete'   => 'task#delete',
 );

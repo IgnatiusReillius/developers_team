@@ -1,71 +1,83 @@
-<?php
-// Definir botones para subheader
-$this->_buttons = include __DIR__ . '/../../../../config/buttoms/inicio.php';
-?>
+<?php $this->title = "Categorías"; ?>
+<div class="w-full">
+  <!-- Subheader con botones de opciones -->
+  <header class="w-full bg-gray-100 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-start gap-1">
+      
+      <div class="max-w-7xl mx- flex items-center justify-start gap-3">
+        <a href="<?= BASE_URL ?>/home"
+          class="bg-gray-800 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-700">
+          Volver a inicio
+        </a>
+      </div>
+      
+    </div>
+  </header>
 
-<div class="w-full max-w-md bg-white p-6 rounded-xl shadow space-y-6">
+  <!-- Cuerpo de la vista -->
+  <main class="w-full flex justify-center py-4">
+
+    <div class="w-full max-w-md bg-white p-6 rounded-xl shadow space-y-6">
+      <h1 class="text-2xl font-bold text-gray-800">Categorías</h1>
+      <ul class="space-y-3">
+        <?php foreach ($this->categories as $cat): ?>
+          <li class="flex items-center justify-between bg-gray-100 rounded px-3 py-2 relative">
+
+            <!-- ========Contenedor izquierdo========== -->
+
+            <div class="flex items-center gap-2 w-full">
+
+              <!-- Nombre visible de la categoría -->
+              <span class="category-name flex-grow"><?= htmlspecialchars($cat->name) ?></span>
+
+              <!-- Formulario de edición (oculto al inicio) -->
+              <form action="<?= WEB_ROOT ?>/categories/update" method="POST" class="edit-form hidden flex-grow flex items-center gap-2">
+                <input type="hidden" name="id" value="<?= $cat->id ?>">
+
+                <!-- Input para modificar el nombre -->
+                <input type="text" name="name" value="<?= htmlspecialchars($cat->name) ?>"
+                  class="flex-grow border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+                <!-- Botón tick para confirmar cambios -->
+                <button type="submit" class="text-green-600 hover:text-green-800" title="Guardar cambios">
+                  <img src="<?= WEB_ROOT ?>/images/icon-tick.svg" alt="Guardar" class="w-5 h-5 inline">
+                </button>
+              </form>
+            </div>
+
+            <!-- =======Contenedor derecho ====== -->
+
+            <div class="flex items-center gap-2 ml-2">
+              <!-- Botón Editar -->
+              <button class="edit-btn" title="Editar">
+                <img src="<?= WEB_ROOT ?>/images/icon-edit.svg" alt="Editar" class="w-5 h-5 inline">
+              </button>
+
+              <!-- Botón Eliminar -->
+              <form action="<?= WEB_ROOT ?>/categories/delete" method="POST" onsubmit="return confirm('¿Eliminar esta categoría?')">
+                <input type="hidden" name="id" value="<?= $cat->id ?>">
+                <button type="submit" class="text-red-500 hover:text-red-700" title="Eliminar">
+                  <img src="<?= WEB_ROOT ?>/images/icon-delete.svg" alt="Eliminar" class="w-5 h-5 inline">
+                </button>
+              </form>
+            </div>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+
+      <!-- ======Formulario para crear nueva categoría========== -->
+      <form action="<?= WEB_ROOT ?>/categories/create" method="POST" class="flex gap-2">
+        <input type="text" name="name" placeholder="Nueva categoría" required
+          class="flex-grow border px-3 py-2 rounded bg-gray-50" />
+        <button type="submit"
+          class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Agregar</button>
+      </form>
+    </div>
 
 
-  <h1 class="text-2xl font-bold text-gray-800">Categorías</h1>
 
+    <!-- =======JavaScript=== -->
 
-  <ul class="space-y-3">
-    <?php foreach ($this->categories as $cat): ?>
-      <li class="flex items-center justify-between bg-gray-100 rounded px-3 py-2 relative">
-
-        <!-- ========Contenedor izquierdo========== -->
-
-        <div class="flex items-center gap-2 w-full">
-
-          <!-- Nombre visible de la categoría -->
-          <span class="category-name flex-grow"><?= htmlspecialchars($cat->name) ?></span>
-
-          <!-- Formulario de edición (oculto al inicio) -->
-          <form action="<?= WEB_ROOT ?>/categories/update" method="POST" class="edit-form hidden flex-grow flex items-center gap-2">
-            <input type="hidden" name="id" value="<?= $cat->id ?>">
-
-            <!-- Input para modificar el nombre -->
-            <input type="text" name="name" value="<?= htmlspecialchars($cat->name) ?>"
-              class="flex-grow border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
-
-            <!-- Botón tick para confirmar cambios -->
-            <button type="submit" class="text-green-600 hover:text-green-800" title="Guardar cambios">
-              <img src="<?= WEB_ROOT ?>/images/icon-tick.svg" alt="Guardar" class="w-5 h-5 inline">
-            </button>
-          </form>
-        </div>
-
-        <!-- =======Contenedor derecho ====== -->
-
-        <div class="flex items-center gap-2 ml-2">
-          <!-- Botón Editar -->
-          <button class="edit-btn" title="Editar">
-          <img src="<?= WEB_ROOT ?>/images/icon-edit.svg" alt="Editar" class="w-5 h-5 inline">
-          </button>
-
-          <!-- Botón Eliminar -->
-          <form action="<?= WEB_ROOT ?>/categories/delete" method="POST" onsubmit="return confirm('¿Eliminar esta categoría?')">
-            <input type="hidden" name="id" value="<?= $cat->id ?>">
-            <button type="submit" class="text-red-500 hover:text-red-700" title="Eliminar">
-              <img src="<?= WEB_ROOT ?>/images/icon-delete.svg" alt="Eliminar" class="w-5 h-5 inline">
-            </button>
-          </form>
-        </div>
-      </li>
-    <?php endforeach; ?>
-  </ul>
-
-  <!-- ======Formulario para crear nueva categoría========== -->
-  <form action="<?= WEB_ROOT ?>/categories/create" method="POST" class="flex gap-2">
-    <input type="text" name="name" placeholder="Nueva categoría" required
-      class="flex-grow border px-3 py-2 rounded bg-gray-50" />
-    <button type="submit"
-      class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Agregar</button>
-  </form>
+    <script src="<?= WEB_ROOT ?>/javascripts/category.js"></script>
+  </main>
 </div>
-
-
-
-<!-- =======JavaScript=== -->
-
-<script src="<?= WEB_ROOT ?>/javascripts/category.js"></script>
