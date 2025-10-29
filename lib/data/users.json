@@ -1,16 +1,16 @@
 {
     "users": [
         {
-            "id": "68fa5650179d7",
-            "name": "lokillo",
-            "email": "loko@gmail.com",
-            "password": "$2y$10$S13A4PP3ekxPLi6nazx6vuSSyHRzNKXlvd2z14y9k3Y9FKin5o68e"
+            "id": "6900bda5e07f5",
+            "name": "nacho",
+            "email": "nacho@nacho.com",
+            "password": "$2y$10$9AyhDjDXB6DBYRq8Oa.xPuMshuY4NPxJmT1n3T7anXzt.nkGcI3Gy"
         },
         {
-            "id": "6901dab2a758b",
-            "name": "prueba",
-            "email": "prueba@gmail.com",
-            "password": "$2y$10$iGfDJIR0xTUlz6sg.a4w1Of9wBsBgKCsCHI4m01Yj.IbGxm2MEDWG"
+            "id": "69018eb2f30d9",
+            "name": "mikel",
+            "email": "mikel@mikel.com",
+            "password": "$2y$10$7WwUIEgSrYqBtE6DggM7QuVshorWEQG0fBvgksJMRgK3WdDtL1JES"
         }
     ]
 }
