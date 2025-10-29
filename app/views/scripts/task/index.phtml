@@ -1,13 +1,14 @@
 
-<div class="flex flex-wrap gap-4">
+<div class="flex flex-wrap gap-4 justify-center">
     <?php foreach ($tasks as $id => $task): ?>
+        
         <!-- Cada tarea es un formulario -->
         <form class="task-card mt-10 bg-white rounded-2xl shadow-md p-6 border border-gray-200" 
             method="post" 
             action="<?= WEB_ROOT ?>/task/edit">
 
             <!-- ID oculto -->
-            <input type="hidden" name="taskId" value="<?= $id ?>">
+            <input type="hidden" name="taskId" value="<?= $id ?>" class="w-10">
 
             <!-- Título de la tarea editable -->
             <input
@@ -38,7 +39,7 @@
                 <div class="flex gap-2">
 
                     <!-- Actualizar tarea -->
-                    <button type="submit" class="save-btn hidden" title="Guardar cambios">
+                    <button type="submit" formaction="<?= WEB_ROOT ?>/task/update" class="save-btn hidden" title="Guardar cambios">
                         <img src="<?= WEB_ROOT ?>/images/icon-tick.svg" alt="Guardar" class="w-5 h-5">
                     </button>
 

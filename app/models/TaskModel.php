@@ -2,7 +2,7 @@
 
 class TaskModel {
 
-    public string $taskTitle, $taskDescription;
+    public string $taskTitle, $taskDescription, $taskUser;
     public array $tasks;
     public stdClass $tagType;
 
@@ -11,8 +11,77 @@ class TaskModel {
     public function __construct(array $dataNewTask = []) {
         $this->taskTitle = $dataNewTask["taskTitle"] ?? "";
         $this->taskDescription = $dataNewTask["taskDescription"] ?? "";
+        $this->taskUser = $dataNewTask["taskUser"] ?? $_SESSION["user"]["name"];
+        self::addNewData();
     }
+   
+
+    // public function addNewData() : void {
+    //     $tasks = self::accessFilteredData();
+    //     $tasks[] = $this;
+    //     self::saveData($tasks);
+    // }
+
+    public function addNewData(): void
+    {
+        // Leer todas las tareas (no filtradas)
+        $tasks = [];
+
+        if (file_exists(self::FILE_PATH)) {
+            $jsonData = file_get_contents(self::FILE_PATH);
+            $tasks = json_decode($jsonData, true) ?? [];
+        }
+
+        // Añadimos la nueva tarea
+        $tasks[] = [
+            "taskTitle" => $this->taskTitle,
+            "taskDescription" => $this->taskDescription,
+            "taskUser" => $this->taskUser
+        ];
+
+        // Guardamos
+        self::saveData($tasks);
+    }
+
+    // public static function deleteTaskById(int $id) : void {
+    //     $tasks = self::accessFilteredData();
+    //     unset($tasks[$id]);
+    //     $tasksReordered = array_values($tasks);
+    //     self::saveData($tasksReordered);
+    // }
+
+    public static function deleteTaskByIndex(int $index): void
+    {
+        if (!file_exists(self::FILE_PATH)) {
+            return;
+        }
+
+        $jsonData = file_get_contents(self::FILE_PATH);
+        $tasks = json_decode($jsonData, true) ?? [];
+
+        // Usuario actual
+        $currentUser = $_SESSION["user"]["name"] ?? null;
+        if (!$currentUser) {
+            return;
+        }
+
+        // Verificamos si el índice existe y pertenece al usuario logueado
+        if (!isset($tasks[$index]) || $tasks[$index]["taskUser"] !== $currentUser) {
+            return; // Evitamos borrar tareas de otros usuarios
+        }
+
+        // Borrar la tarea
+        unset($tasks[$index]);
+
+        // Guardar los cambios SIN reindexar (para mantener consistencia con los índices globales)
+        file_put_contents(
+            self::FILE_PATH,
+            json_encode($tasks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+        );
+    }
+
     
+
     public static function saveData(array $tasks) : void {
         file_put_contents( 
             self::FILE_PATH,
@@ -20,50 +89,87 @@ class TaskModel {
         );
     }
 
-    public function addNewData() : void {
-        $tasks = self::accessAllData();
-        $tasks[] = $this;
-        self::saveData($tasks);
-    }
 
-    public static function accessAllData() : array {
+    public static function accessFilteredData() : array {
         if (!file_exists(self::FILE_PATH)) {
+            echo "No existe el archivo de tareas";
             return [];
         }
         
-        $jsonData = file_get_contents(self::FILE_PATH); 
+        // traer datos del json y decodificarlos
+        $jsonData = file_get_contents(self::FILE_PATH);
+        $decodedData = json_decode($jsonData, true) ?? [];
 
-        $decodedData = json_decode($jsonData, true) ?? []; 
+        // Comprobamos qué usuario está logueado
+        $currentUser = $_SESSION["user"]["name"] ?? null; 
 
-        return array_map(fn($item) => (object) $item, $decodedData);
+        // Verificar si el usuario está en sesión
+        if (!$currentUser) {
+            echo "no hay usuario";
+            return [];
+        }
+
+        // Filtrar manteniendo las claves originales (índices reales)
+        $filteredDataByUser = array_filter($decodedData, function ($task) use ($currentUser) {
+            return isset($task["taskUser"]) && $task["taskUser"] === $currentUser;
+        });
+
+        // Convertir a objetos pero sin perder los índices
+        foreach ($filteredDataByUser as $key => &$task) {
+            $task = (object) $task;
+        }
+
+        return $filteredDataByUser; // mantiene claves 0, 1, 4
+
+        // $filteredDataByUser = self::filterByUser($decodedData);
+
+        // return array_map(fn($item) => (object) $item, $filteredDataByUser);
     }
 
-    public static function showAllData() : void {
-        $tasks = self::accessAllData();
-        echo 'Showing all data:<pre>';
-        print_r($tasks); 
-        echo '</pre>';
-    }
-
-    public static function deleteTaskById(int $id) : void {
-        $tasks = self::accessAllData();
-        unset($tasks[$id]);
-        $tasksReordered = array_values($tasks);
-        self::saveData($tasksReordered);
-    }
-
-    public static function updateTaskById(int $id, string $newTaskTitle, string $newTaskDescription) : void {
-        $tasks = self::accessAllData();
-
-        if(!isset($tasks[$id])) {
-            echo "No existe una tarea con ese ID";
+    public static function updateTaskByIndex(int $index, string $newTaskTitle, string $newTaskDescription): void {
+        if (!file_exists(self::FILE_PATH)) {
+            echo "No existe el archivo de tareas";
             return;
         }
-        
-        $tasks[$id]->taskTitle = $newTaskTitle;
-        $tasks[$id]->taskDescription = $newTaskDescription;
 
-        self::saveData($tasks);
+        // Cargar todas las tareas
+        $jsonData = file_get_contents(self::FILE_PATH);
+        $allTasks = json_decode($jsonData, true) ?? [];
+
+        // Usuario actual
+        $currentUser = $_SESSION["user"]["name"] ?? null;
+        if (!$currentUser) {
+            echo "No hay usuario logueado";
+            return;
+        }
+
+
+        if ($allTasks[$index]["taskUser"] !== $currentUser) {
+            echo "No tienes permiso para editar esta tarea";
+            return;
+        }
+
+        // Actualizamos los campos
+        $allTasks[$index]["taskTitle"] = $newTaskTitle;
+        $allTasks[$index]["taskDescription"] = $newTaskDescription;
+
+        // Guardamos todo el archivo
+        self::saveData($allTasks);
     }
 
+
+    
+
+
+
+
+
+
+
+
+
+    public static function showAllData() : void {
+        $tasks = self::accessFilteredData();
+        print_r($tasks); 
+    }
 }
