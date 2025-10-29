@@ -13,10 +13,16 @@
             "password": "$2y$10$7WwUIEgSrYqBtE6DggM7QuVshorWEQG0fBvgksJMRgK3WdDtL1JES"
         },
         {
-            "id": "6901ebc8401db",
-            "name": "cris",
-            "email": "cris@cris.com",
-            "password": "$2y$10$PDyyGyJjpkC\/sbnT3tv0b.jCXcC6eXaZRz60TMKdYiztF0vIlCmtK"
+            "id": "6901eb808048f",
+            "name": "prueba",
+            "email": "prueba@gmail.com",
+            "password": "$2y$10$vuapPn5fe2m.qpImukQqPuQVnes3YqxNk1Ia\/.GkabnOnF8oVQaTC"
+        },
+        {
+            "id": "6901ec51e386b",
+            "name": "pruebilla",
+            "email": "pruebilla@gmail.com",
+            "password": "$2y$10$azTI0h\/EyqPZQyZOIoVJBOxgqn69jZkXm.zSviJLo6ksSwKL2ZQM."
         }
     ]
 }
