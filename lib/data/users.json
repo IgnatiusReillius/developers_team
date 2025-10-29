@@ -11,6 +11,12 @@
             "name": "mikel",
             "email": "mikel@mikel.com",
             "password": "$2y$10$7WwUIEgSrYqBtE6DggM7QuVshorWEQG0fBvgksJMRgK3WdDtL1JES"
+        },
+        {
+            "id": "6901ebc8401db",
+            "name": "cris",
+            "email": "cris@cris.com",
+            "password": "$2y$10$PDyyGyJjpkC\/sbnT3tv0b.jCXcC6eXaZRz60TMKdYiztF0vIlCmtK"
         }
     ]
 }
