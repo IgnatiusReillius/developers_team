@@ -5,10 +5,12 @@
 
             <!-- Botones centrados -->
             <div class="flex justify-center gap-6 ">
+
                 <!-- botón nueva tarea -->
-                <a href="<?= BASE_URL?>/task/create" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">
+                <a href="<?= BASE_URL ?>/task/create" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">
                     + Nueva tarea
                 </a>
+
                 <!-- botón categorias -->
                 <a href="<?= BASE_URL ?>/categories" class="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition">
                     Ir a categorías
@@ -26,10 +28,10 @@
     <main class="w-full bg-gray-300 flex">
         <?php
 
-            require_once __DIR__ . '/../../../controllers/TaskController.php';
+        require_once __DIR__ . '/../../../controllers/TaskController.php';
 
-            $controller = new TaskController();
-            $controller->viewTaskAction();
+        $controller = new TaskController();
+        $controller->viewTaskAction();
 
         ?>
     </main>

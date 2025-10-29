@@ -5,15 +5,14 @@
     class TaskController extends ApplicationController {
 
         public function createTaskAction() {
-            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 $dataNewTask = [ 
-                    "taskTitle" => trim($_POST["taskTitle"] ?? ""),
-                    "taskDescription" => trim($_POST["taskDescription"] ?? ""),
+                    "taskTitle" => "Nueva tarea",
+                    "taskDescription" => "Descripción de la nueva tarea.",
                     "taskUser" => $_SESSION["user"]["name"]
                 ];
 
-                $newTask = new TaskModel($dataNewTask);
-                $newTask->addNewData();
+                new TaskModel($dataNewTask);
 
                 header("Location: " . WEB_ROOT . "/home");
                 exit;
@@ -22,7 +21,6 @@
 
         public function viewTaskAction(){
             $tasks = TaskModel::accessFilteredData();
-            // echo $_SESSION["user"]["name"];
             require __DIR__ . "/../views/scripts/task/index.phtml";
         }
 

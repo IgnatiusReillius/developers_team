@@ -14,13 +14,6 @@ class TaskModel {
         $this->taskUser = $dataNewTask["taskUser"] ?? $_SESSION["user"]["name"];
         self::addNewData();
     }
-   
-
-    // public function addNewData() : void {
-    //     $tasks = self::accessFilteredData();
-    //     $tasks[] = $this;
-    //     self::saveData($tasks);
-    // }
 
     public function addNewData(): void
     {
@@ -31,7 +24,7 @@ class TaskModel {
             $jsonData = file_get_contents(self::FILE_PATH);
             $tasks = json_decode($jsonData, true) ?? [];
         }
-
+        
         // Añadimos la nueva tarea
         $tasks[] = [
             "taskTitle" => $this->taskTitle,
@@ -43,12 +36,6 @@ class TaskModel {
         self::saveData($tasks);
     }
 
-    // public static function deleteTaskById(int $id) : void {
-    //     $tasks = self::accessFilteredData();
-    //     unset($tasks[$id]);
-    //     $tasksReordered = array_values($tasks);
-    //     self::saveData($tasksReordered);
-    // }
 
     public static function deleteTaskByIndex(int $index): void
     {
@@ -80,7 +67,7 @@ class TaskModel {
         );
     }
 
-    
+
 
     public static function saveData(array $tasks) : void {
         file_put_contents( 
@@ -120,10 +107,6 @@ class TaskModel {
         }
 
         return $filteredDataByUser; // mantiene claves 0, 1, 4
-
-        // $filteredDataByUser = self::filterByUser($decodedData);
-
-        // return array_map(fn($item) => (object) $item, $filteredDataByUser);
     }
 
     public static function updateTaskByIndex(int $index, string $newTaskTitle, string $newTaskDescription): void {
@@ -143,7 +126,6 @@ class TaskModel {
             return;
         }
 
-
         if ($allTasks[$index]["taskUser"] !== $currentUser) {
             echo "No tienes permiso para editar esta tarea";
             return;
@@ -155,21 +137,5 @@ class TaskModel {
 
         // Guardamos todo el archivo
         self::saveData($allTasks);
-    }
-
-
-    
-
-
-
-
-
-
-
-
-
-    public static function showAllData() : void {
-        $tasks = self::accessFilteredData();
-        print_r($tasks); 
     }
 }
