@@ -55,7 +55,7 @@ class UserModel extends Model
         }
         return null;
     }
-    public function updateUsers(string $email, string $newName, string $newPassword) : bool
+    public function updateUsers(string $email, string $newName, ?string $newPassword) : bool
     {
         foreach ($this->data['users'] as &$user) {
             if ($user['email'] === $email) {
@@ -69,7 +69,7 @@ class UserModel extends Model
         }
         return false;
     }
-    public function deleteUsers($id): bool
+    public function deleteUsers(string $id): bool
     {
         foreach ($this->data['users'] as $index => $user) {
             if ($user ['id'] === $id) {

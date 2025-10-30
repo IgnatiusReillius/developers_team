@@ -142,8 +142,7 @@ class UserController extends ApplicationController
             }
         }
             $email = $_SESSION['user']['email'];
-            $updated = $this->userModel->updateUsers($email, $name, $newPassword, $wantsToChangePassword ? $newPassword : null);
-
+            $updated = $this->userModel->updateUsers($email, $name, $wantsToChangePassword ? $newPassword : null);
             if ($updated) {
                 $_SESSION['user'] = [
                     'id' => $_SESSION['user']['id'],

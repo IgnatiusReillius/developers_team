@@ -7,22 +7,10 @@
             "password": "$2y$10$9AyhDjDXB6DBYRq8Oa.xPuMshuY4NPxJmT1n3T7anXzt.nkGcI3Gy"
         },
         {
-            "id": "69018eb2f30d9",
-            "name": "mikel",
-            "email": "mikel@mikel.com",
-            "password": "$2y$10$7WwUIEgSrYqBtE6DggM7QuVshorWEQG0fBvgksJMRgK3WdDtL1JES"
-        },
-        {
-            "id": "6901eb808048f",
+            "id": "69034577db57a",
             "name": "prueba",
             "email": "prueba@gmail.com",
-            "password": "$2y$10$vuapPn5fe2m.qpImukQqPuQVnes3YqxNk1Ia\/.GkabnOnF8oVQaTC"
-        },
-        {
-            "id": "6901ec51e386b",
-            "name": "pruebilla",
-            "email": "pruebilla@gmail.com",
-            "password": "$2y$10$azTI0h\/EyqPZQyZOIoVJBOxgqn69jZkXm.zSviJLo6ksSwKL2ZQM."
+            "password": "$2y$10$nmbKkuf5S1ucvXjB5YDpxe4OraDGB4c.lYGP898PLFblrRF4to6KO"
         }
     ]
 }
