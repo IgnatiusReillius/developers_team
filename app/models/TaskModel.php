@@ -4,7 +4,7 @@ class TaskModel {
 
     public string $taskTitle, $taskDescription, $taskUser;
     public array $tasks;
-    public stdClass $tagType;
+    public ?int $categoryId = null;
 
     const FILE_PATH = __DIR__ . "/../../lib/data/tasks.json";
 
@@ -12,11 +12,12 @@ class TaskModel {
         $this->taskTitle = $dataNewTask["taskTitle"] ?? "";
         $this->taskDescription = $dataNewTask["taskDescription"] ?? "";
         $this->taskUser = $dataNewTask["taskUser"] ?? $_SESSION["user"]["name"];
-        self::addNewData();
+        $this->categoryId = isset($dataNewTask["categoryId"]) ? (int)$dataNewTask["categoryId"] : null;
+
+        self::addNewData($this);
     }
 
-    public function addNewData(): void
-    {
+    public static function addNewData(TaskModel $taskModel) : void {
         // Leer todas las tareas (no filtradas)
         $tasks = [];
 
@@ -27,18 +28,24 @@ class TaskModel {
         
         // Añadimos la nueva tarea
         $tasks[] = [
-            "taskTitle" => $this->taskTitle,
-            "taskDescription" => $this->taskDescription,
-            "taskUser" => $this->taskUser
+            "taskTitle" => $taskModel->taskTitle,
+            "taskDescription" => $taskModel->taskDescription,
+            "taskUser" => $taskModel->taskUser,
+            "categoryId" => $taskModel->categoryId
         ];
 
         // Guardamos
         self::saveData($tasks);
     }
 
+    public static function saveData(array $tasks) : void {
+        file_put_contents( 
+            self::FILE_PATH,
+            json_encode($tasks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) 
+        );
+    }
 
-    public static function deleteTaskByIndex(int $index): void
-    {
+    public static function deleteTaskByIndex(int $index) : void {
         if (!file_exists(self::FILE_PATH)) {
             return;
         }
@@ -67,16 +74,6 @@ class TaskModel {
         );
     }
 
-
-
-    public static function saveData(array $tasks) : void {
-        file_put_contents( 
-            self::FILE_PATH,
-            json_encode($tasks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) 
-        );
-    }
-
-
     public static function accessFilteredData() : array {
         if (!file_exists(self::FILE_PATH)) {
             echo "No existe el archivo de tareas";
@@ -101,15 +98,31 @@ class TaskModel {
             return isset($task["taskUser"]) && $task["taskUser"] === $currentUser;
         });
 
+        // ======= Cargar categorías =======
+        $categoriesPath = __DIR__ . "/../../lib/data/categories.json";
+        $categories = [];
+        if (file_exists($categoriesPath)) {
+            $categories = json_decode(file_get_contents($categoriesPath), true) ?? [];
+        }
+        $categoryMap = [];
+        foreach ($categories as $cat) {
+            $categoryMap[$cat["id"]] = $cat["name"];
+        }
+
         // Convertir a objetos pero sin perder los índices
         foreach ($filteredDataByUser as $key => &$task) {
-            $task = (object) $task;
+            $taskObj = (object) $task;
+            $categoryId = $task["categoryId"] ?? null;
+            $taskObj->categoryName = $categoryId && isset($categoryMap[$categoryId])
+                ? $categoryMap[$categoryId]
+                : "Sin categoría";
+            $task = $taskObj;
         }
 
         return $filteredDataByUser; // mantiene claves 0, 1, 4
     }
 
-    public static function updateTaskByIndex(int $index, string $newTaskTitle, string $newTaskDescription): void {
+    public static function updateTaskByIndex(int $index, string $newTaskTitle, string $newTaskDescription, ?int $newCategoryId = null) : void {
         if (!file_exists(self::FILE_PATH)) {
             echo "No existe el archivo de tareas";
             return;
@@ -126,7 +139,7 @@ class TaskModel {
             return;
         }
 
-        if ($allTasks[$index]["taskUser"] !== $currentUser) {
+        if (!isset($allTasks[$index]) || $allTasks[$index]["taskUser"] !== $currentUser) {
             echo "No tienes permiso para editar esta tarea";
             return;
         }
@@ -134,6 +147,9 @@ class TaskModel {
         // Actualizamos los campos
         $allTasks[$index]["taskTitle"] = $newTaskTitle;
         $allTasks[$index]["taskDescription"] = $newTaskDescription;
+        if ($newCategoryId !== null) {
+            $allTasks[$index]["categoryId"] = $newCategoryId;
+        }
 
         // Guardamos todo el archivo
         self::saveData($allTasks);

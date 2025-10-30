@@ -20,7 +20,12 @@
         }
 
         public function viewTaskAction(){
+            require_once __DIR__ . '/../models/CategoryModel.php';
+            $categoryModel = new CategoryModel();
+
             $tasks = TaskModel::accessFilteredData();
+            $categories = $categoryModel->getAll();
+
             require __DIR__ . "/../views/scripts/task/index.phtml";
         }
 
@@ -30,8 +35,9 @@
 
                 $newTaskTitle = trim($_POST["taskTitle"] ?? "");
                 $newTaskDescription = trim($_POST["taskDescription"] ?? "");
+                $newCategoryId = isset($_POST["categoryId"]) ? (int)$_POST["categoryId"] : null;
 
-                TaskModel::updateTaskByIndex($id, $newTaskTitle, $newTaskDescription);
+                TaskModel::updateTaskByIndex($id, $newTaskTitle, $newTaskDescription, $newCategoryId);
                 header("Location: " . WEB_ROOT . "/home");
                 exit;
             }
@@ -46,7 +52,4 @@
             exit;
         }
 
-        public function indexAction() {
-            $this->tasks = TaskModel::accessAllData();
-        }
     }

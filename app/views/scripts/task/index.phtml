@@ -1,10 +1,9 @@
-
 <div class="flex flex-wrap gap-4 justify-center">
     <?php foreach ($tasks as $id => $task): ?>
-        
+
         <!-- Cada tarea es un formulario -->
-        <form class="task-card mt-10 bg-white rounded-2xl shadow-md p-6 border border-gray-200" 
-            method="post" 
+        <form class="task-card mt-10 bg-white rounded-2xl shadow-md p-6 border border-gray-200"
+            method="post"
             action="<?= WEB_ROOT ?>/task/edit">
 
             <!-- ID oculto -->
@@ -31,8 +30,15 @@
             <div class="flex justify-between items-center">
 
                 <!-- Categoría -->
-                <div>
-                    Categoría
+                 <div>
+                    <select name="categoryId" class="border border-gray-300 rounded-lg p-1 bg-gray-50" disabled>
+                        <?php foreach ($categories as $cat): ?>
+                            <option value="<?= $cat->id ?>" 
+                                <?= (isset($task->categoryName) && $task->categoryName === $cat->name) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($cat->name) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <!-- Barra de opciones -->
@@ -75,6 +81,8 @@
                     el.disabled = false;
                     el.classList.add('border-blue-400', 'bg-white');
                 });
+                const select = card.querySelector('select[name="categoryId"]');
+                if (select) select.disabled = false;
 
                 // Mostrar botón de guardar y ocultar editar
                 saveBtn.classList.remove('hidden');
