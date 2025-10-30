@@ -82,7 +82,7 @@ class UserController extends ApplicationController
         header('Location: ' . BASE_URL . '/login');
         exit;
     }
-    public function validations(string $name, string $email, string $password, string $confirmPassword): bool
+    private function validations(string $name, string $email, string $password, string $confirmPassword): bool
     {
         if (strlen($name) < 3) {
             $this->view->error = "Nombre inválido.";
@@ -142,7 +142,7 @@ class UserController extends ApplicationController
             }
         }
             $email = $_SESSION['user']['email'];
-            $updated = $this->userModel->updateUsers($email, $name, $newPassword);
+            $updated = $this->userModel->updateUsers($email, $name, $newPassword, $wantsToChangePassword ? $newPassword : null);
 
             if ($updated) {
                 $_SESSION['user'] = [
