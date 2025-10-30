@@ -69,7 +69,7 @@ class UserModel extends Model
         }
         return false;
     }
-    public function deleteUsers($id): bool
+    public function deleteUsers(string $id): bool
     {
         foreach ($this->data['users'] as $index => $user) {
             if ($user ['id'] === $id) {
