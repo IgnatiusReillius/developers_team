@@ -1,17 +1,14 @@
 {
-    "0": {
-        "taskTitle": "titulo",
-        "taskDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consequat, velit nec feugiat placerat, felis augue accumsan velit, vestibulum porta tellus mi sed nulla. Sed commodo minimum ornare.",
-        "taskUser": "nacho"
+    "2": {
+        "taskTitle": "Nueva tarea",
+        "taskDescription": "Descripción de la nueva tarea.",
+        "taskUser": "mikel",
+        "categoryId": null
     },
     "3": {
-        "taskTitle": "4",
-        "taskDescription": "4puñetas",
-        "taskUser": "mikel"
-    },
-    "4": {
-        "taskTitle": "5",
-        "taskDescription": "5ccccc",
-        "taskUser": "nacho"
+        "taskTitle": "Nueva tarea",
+        "taskDescription": "Descripción de la nueva tarea.",
+        "taskUser": "nacho",
+        "categoryId": null
     }
 }

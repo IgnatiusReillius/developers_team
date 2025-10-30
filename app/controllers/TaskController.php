@@ -26,6 +26,10 @@
             $tasks = TaskModel::accessFilteredData();
             $categories = $categoryModel->getAll();
 
+            // if(empty($tasks)) {
+            //     echo "no hay tareas ";
+            // }
+
             require __DIR__ . "/../views/scripts/task/index.phtml";
         }
 
