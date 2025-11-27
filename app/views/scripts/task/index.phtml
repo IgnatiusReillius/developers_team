@@ -1,0 +1,156 @@
+<!-- Si no hay tareas, mostrar el texto -->
+<?php if (empty($tasks)): ?>
+    <h2 class="mt-6 text-2xl font-bold text-gray-800 text-center">No hay tareas</h2>
+<?php else: ?>
+    <div class="masonry-container">
+        <!-- Renderizar cada tarea del array -->
+        <?php foreach ($tasks as $id => $task): ?>
+    
+            <!-- Cada tarea es un formulario -->
+            <form class="task-card bg-white rounded-2xl shadow-md p-6 border border-gray-200"
+                method="post"
+                action="<?= WEB_ROOT ?>/task/edit">
+    
+                <!-- ID oculto -->
+                <input type="hidden" name="taskId" value="<?= $id ?>" class="w-10">
+    
+                <!-- Título de la tarea editable -->
+                <input
+                    type="text"
+                    name="taskTitle"
+                    value="<?= htmlspecialchars($task->taskTitle) ?>"
+                    class="text-2xl font-semibold text-gray-800 mb-4 bg-transparent"
+                    disabled>
+    
+                <!-- Descripción editable -->
+                <textarea
+                    name="taskDescription"
+                    class="task-desc border border-gray-300 rounded-lg p-4 text-gray-700 mb-4 w-full resize-none overflow-hidden"
+                    disabled><?= htmlspecialchars($task->taskDescription) ?>
+                </textarea>
+    
+    
+                <!-- Barra de categoría y opciones -->
+                <div class="flex justify-between items-center mt-2">
+    
+                    <!-- Categoría -->
+                    <div class="category-container">
+                        <!-- Texto visible por defecto -->
+                        <span class="category-text font-medium text-gray-800">
+                            <?= htmlspecialchars($task->categoryName ?? "Sin categoría") ?>
+                        </span>
+    
+                        <!-- Selector oculto hasta que se edite -->
+                        <select name="categoryId"
+                            class="category-select hidden border border-gray-300 rounded-lg p-1 bg-gray-50">
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?= $cat->id ?>"
+                                    <?= (isset($task->categoryName) && $task->categoryName === $cat->name) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($cat->name) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+    
+                    <!-- Barra de opciones -->
+                    <div class="gap-2">
+    
+                        <!-- Actualizar tarea -->
+                        <button type="submit" formaction="<?= WEB_ROOT ?>/task/update" class="save-btn hidden" title="Guardar cambios">
+                            <img src="<?= WEB_ROOT ?>/images/icon-tick.svg" alt="Guardar" class="w-5 h-5">
+                        </button>
+    
+                        <!-- Editar tarea -->
+                        <button type="button" class="edit-btn" title="Editar tarea">
+                            <img src="<?= WEB_ROOT ?>/images/icon-edit.svg" alt="Editar" class="w-5 h-5">
+                        </button>
+    
+                        <!-- Borrar tarea -->
+                        <button type="submit" formaction="<?= WEB_ROOT ?>/task/delete" title="Eliminar tarea">
+                            <img src="<?= WEB_ROOT ?>/images/icon-delete.svg" alt="Eliminar" class="w-5 h-5">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+
+<!-- =======JavaScript=== -->
+
+<!-- <script src="/javascripts/category.js"></script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.task-desc').forEach(textarea => {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+
+            // Ajustar también cuando cambia el texto (en modo edición)
+            textarea.addEventListener('input', () => {
+                textarea.style.height = 'auto';
+                textarea.style.height = textarea.scrollHeight + 'px';
+            });
+        });
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.task-card');
+                const inputs = card.querySelectorAll('input[type="text"], textarea');
+                const saveBtn = card.querySelector('.save-btn');
+                const select = card.querySelector('.category-select');
+                const textSpan = card.querySelector('.category-text');
+
+                // Habilitar inputs
+                inputs.forEach(el => {
+                    el.disabled = false;
+                    el.classList.add('border-blue-400', 'bg-white');
+                });
+
+                // Mostrar select y ocultar texto
+                if (select && textSpan) {
+                    select.classList.remove('hidden');
+                    textSpan.classList.add('hidden');
+                    select.disabled = false;
+                }
+
+                // Mostrar botón de guardar y ocultar editar
+                saveBtn.classList.remove('hidden');
+                button.classList.add('hidden');
+            });
+        });
+
+    });
+</script>
+
+<style>
+    /* Masonry con columnas fluidas */
+    .masonry-container {
+        column-count: 2;
+        column-gap: 1.5rem;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Evita que las tarjetas se rompan entre columnas */
+    .task-card {
+        width: 100%;
+        break-inside: avoid;
+        /* evita cortes feos */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (min-width: 1024px) {
+        .masonry-container {
+            column-count: 3;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .masonry-container {
+            column-count: 1;
+        }
+    }
+</style>

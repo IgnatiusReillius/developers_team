@@ -1,0 +1,81 @@
+<?php $this->title = "Editar perfil"; ?>
+<div class="w-full">
+  <!-- Subheader con botones de opciones -->
+  <header class="w-full bg-gray-100 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-start gap-1">
+
+      <div class="max-w-7xl mx- flex items-center justify-start gap-3">
+        <a href="<?= BASE_URL ?>/home"
+          class="bg-gray-800 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-700">
+          Volver a inicio
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Cuerpo de la vista -->
+  <main class="w-full flex justify-center py-4">
+    <div class="w-full max-w-md bg-white p-6 rounded-xl shadow space-y-6">
+      <h2 class="text-2xl font-bold text-gray-800 text-center">Editar perfil</h2>
+
+      <?php if (!empty($this->_data['error'])): ?>
+        <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+          <?= htmlspecialchars($this->_data['error']) ?>
+        </div>
+      <?php endif; ?>
+
+      <form action="<?= BASE_URL ?>/update" method="POST" class="space-y-4" autocomplete="off">
+        <div>
+          <label class="block text-sm font-medium text-gray-800">Nombre</label>
+          <input
+            type="text"
+            name="name"
+            autocomplete="off"
+            value="<?= htmlspecialchars($this->_data['user']['name'] ?? '') ?>"
+            class="mt-1 w-full border rounded px-3 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-800">Email</label>
+          <input
+            type="email"
+            name="email"
+            autocomplete="off"
+            value="<?= htmlspecialchars($this->_data['user']['email'] ?? '') ?>"
+            class="mt-1 w-full border rounded px-3 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-800">Nueva Contraseña</label>
+          <input
+            type="password"
+            name="newPassword"
+            autocomplete="new-password"
+            class="mt-1 w-full border rounded px-3 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-800">Confirmar contraseña</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            autocomplete="new-password"
+            class="mt-1 w-full border rounded px-3 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <p class="mt-6 text-sm">
+          Si desea eliminar el usuario,
+          <a href="<?= BASE_URL ?>/deleteConfirm" class="text-yellow-600 hover:underline">pulse aqui.</a>
+        </p>
+
+        <div class="pt-2">
+          <button
+            type="submit"
+            class="w-full bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+            Actualizar
+          </button>
+      </form>
+
+
+    </div>
+
+    <script src="<?= WEB_ROOT ?>/javascripts/users.js"></script>
+  </main>
+</div>

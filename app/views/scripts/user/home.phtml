@@ -1,0 +1,38 @@
+<?php $this->title = "Mis tareas"; ?>
+<div class="w-full flex-direction: column "> <!-- div general para mostrar en columna el subheader y el contenido -->
+    <header class="w-full flex items-center">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-start gap-1">
+
+            <!-- Botones centrados -->
+            <div class="flex justify-center gap-6 ">
+
+                <!-- botón nueva tarea -->
+                <a href="<?= BASE_URL ?>/task/create" class="bg-gray-800 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-700">
+                    + Nueva tarea
+                </a>
+
+                <!-- botón categorias -->
+                <a href="<?= BASE_URL ?>/categories" class="bg-gray-800 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-700">
+                    Ir a categorías
+                </a>
+            </div>
+
+            <?php if (!empty($this->error)): ?>
+                <div class="max-w-md mx-auto mt-4 p-4 bg-red-100 text-red-700 rounded">
+                    <?= htmlspecialchars($this->error) ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </header>
+
+    <main class="w-full flex justify-around">
+        <?php
+
+        require_once __DIR__ . '/../../../controllers/TaskController.php';
+
+        $controller = new TaskController();
+        $controller->viewTaskAction();
+
+        ?>
+    </main>
+</div>

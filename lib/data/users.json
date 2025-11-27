@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "id": "6900bda5e07f5",
+            "name": "nacho",
+            "email": "nacho@nacho.com",
+            "password": "$2y$10$9AyhDjDXB6DBYRq8Oa.xPuMshuY4NPxJmT1n3T7anXzt.nkGcI3Gy"
+        },
+        {
+            "id": "69034577db57a",
+            "name": "prueba",
+            "email": "prueba@gmail.com",
+            "password": "$2y$10$nmbKkuf5S1ucvXjB5YDpxe4OraDGB4c.lYGP898PLFblrRF4to6KO"
+        }
+    ]
+}

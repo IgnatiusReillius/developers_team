@@ -1,0 +1,14 @@
+{
+    "2": {
+        "taskTitle": "Nueva tarea",
+        "taskDescription": "Descripción de la nueva tarea.",
+        "taskUser": "mikel",
+        "categoryId": null
+    },
+    "3": {
+        "taskTitle": "Nueva tarea",
+        "taskDescription": "Descripción de la nueva tarea.",
+        "taskUser": "nacho",
+        "categoryId": null
+    }
+}

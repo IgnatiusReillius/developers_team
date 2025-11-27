@@ -1,83 +1,118 @@
-# PHP initial Project
-Main structure of php project. Folders / files:
-- **app**
-  - **controllers**
-  - **models**
-  - **views**
-- **config**
-- **lib**
-  - **base**
-- **web**
+#TASKIFY
 
-### Usage
+Es un proyecto web para gestionar tareas.
+Las crea el mismo usuario y le puede asignar categorías.
 
-The web/index.php is the heart of the system.
-This means that your web applications root folder is the “web” folder.
-
-All requests go through this file and it decides how the routing of the app
-should be.
-You can add additional hooks in this file to add certain routes.
-
-### Project Structure
-
-The root of the project holds a few directories:
-**/app** This is the folder where your magic will happen. Use the views, controllers and models folder for your app code.
-**/config** this folder holds a few configuration files. Currently only the connection to the database.
-**/lib** This is where you should put external libraries and other external files.
-**/lib/base** The library files. Don’t change these :)
-**/web** This folder holds files that are to be “downloaded” from your app. Stylesheets, javascripts and images used. (and more of course)
-
-The system uses a basic MVC structure, with your web app’s files located in the
-“app” folder.
-
-#### app/controllers
-Your application’s controllers should be defined here.
-
-All controller names should end with “Controller”. E.g. TestController.
-All controllers should inherit the library’s “Controller” class.
-However, you should generally just make an ApplicationController, which extends
-the Controller. Then you can defined beforeFilters etc in that, which will get run
-at every request.
-
-#### app/models
-Models handles database interaction etc.
-
-All models should inherit from the Model class, which provides basic functionality.
-The Model class handles basic functionality such as:
-
-Setting up a database connection (using PDO)
-fetchOne(ID)
-save(array) → both update/create
-delete(ID)
-app/views
-Your view files.
-The structure is made so that having a controller named TestController, it looks
-in the app/views/test/ folder for it’s view files.
-
-All view files end with .phtml
-Having an action in the TestController called index, the view file
-app/views/test/index.phtml will be rendered as default.
-
-#### config/routes.php
-Your routes around the system needs to be defined here.
-A route consists of the URL you want to call + the controller#action you want it
-to hit.
-
-An example is:
-$routes = array(
-‘/test’ => ‘test#index’ // this will hit the TestController’s indexAction method.
-);
-
-#### Error handling
-A general error handling has been added.
-
-If a route doesn’t exist, then the error controller is hit.
-If some other exception was thrown, the error controller is hit.
-As default, the error controller just shows the exception occured, so remember
-to style the error controller’s view file (app/views/error/error.phtml)
+Funcionalidades:
+- CRUD de tareas
+- CRUD de usuarios
+- CRUD de categorías
 
 
-### Utilities
-- [PHP Developers Guide](https://www.php.net/manual/en/index.php).
-- .gitignore file configuration. [See Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-- Git branches. [See Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
+Las tecnologías usadas son:
+- PHP 
+- HTML/framework de CSS Tailwind.
+- JSON como almacenamiento de datos
+- Servidor local: Apache
+- Entorno: XAMPP
+
+
+Recomendación para descargarlo en tu ordenador:
+
+1. Terminal:
+   Desde la terminal dirigete a la ubicación donde tengas la carpeta XAMPP/htdocs
+
+2. Clonar el repositorio:
+   git clone <https://github.com/IgnatiusReillius/developers_team>
+
+3. Abrir el proyecto en el navegador:
+   http://localhost/developers_team/web
+
+
+Estructura del proyecto:
+
+/app
+   /controllers
+     - ApplicationController.php
+     - CategoryController.php
+     - ErrorController.php
+     - TaskController.php
+     - TestController.php
+     - UserController.php
+   /model
+     - CategoryModel.php
+     - TaskModel.php
+     - UserModel.php
+     README
+   /views
+     /layouts
+      - layout.phtml
+      - header.phtml
+      - subheader.phtml
+      - footer.phtml
+     /scripts
+      /category
+       - index.phtml
+      /error
+       - error.phtml
+      /task
+       - index.phtml
+      /test
+       - index.phtml
+      /user
+       - deleteConfirm.phtml
+       - home.phtml
+       - login.phtml
+       - registeredUser.phtml
+       - signup.phtml
+       - update.phtm
+/config
+ /buttoms
+   - volverInicio.php
+ - constants.php
+ - db.inc.php
+ - environment.inc.php
+ - routes.php
+ - settings.ini
+/lib
+   /base
+    - Controller.php
+    - Model.php
+    - Request.php
+    - Router.php
+    - View.php
+   /data
+    - categories.json
+    - task.json
+    - users.json
+   README
+/web
+ /images
+   README
+   - icon-delete.svg
+   - icon-edit.svg
+   - icon-email.svg
+   - icon-password.svg
+   - icon-tick.svg
+   - icon-user.svg
+   - logo-taskify.svg
+ /javascripts
+   README
+   - category.js
+ /stylesheets
+   - .htaccess
+   - index.php
+README
+
+
+⚠️ Nota para usuarios de Mac:
+Es posible que los archivos JSON no se puedan escribir después de un pull de Git. 
+Ejecutar en la terminal dentro de la carpeta /data:
+chmod 666 data/*.json
+chmod 777 data
+
+
+
+  
+       
+
